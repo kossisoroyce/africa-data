@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Madagascar household characteristics statistics from the 2021 EDSMD-V.">
+    <title>Household Characteristics — Madagascar — AfricaData</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/shared-styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <style>
+        :root { --bg-primary: #0d0f12; --bg-card: #1a1e24; --bg-hover: #22272f; --text-primary: #f4f4f5; --text-secondary: #a1a1aa; --text-muted: #71717a; --accent-gold: #d4a853; --accent-teal: #2dd4bf; --accent-coral: #f97316; --accent-rose: #f43f5e; --border-subtle: rgba(255,255,255,0.06); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Source Sans 3', -apple-system, sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(13, 15, 18, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-subtle); }
+        .nav-inner { max-width: 1400px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; text-decoration: none; color: var(--text-primary); }
+        .logo span { color: var(--accent-gold); }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent-gold); }
+        .breadcrumb { max-width: 1400px; margin: 0 auto; padding: 5rem 2rem 1rem; font-size: 0.85rem; color: var(--text-muted); }
+        .breadcrumb a { color: var(--text-muted); text-decoration: none; }
+        .breadcrumb a:hover { color: var(--accent-gold); }
+        .breadcrumb .sep { margin: 0 0.5rem; }
+        .breadcrumb .current { color: var(--accent-gold); }
+        .page-header { max-width: 1400px; margin: 0 auto; padding: 1rem 2rem 2rem; }
+        .page-header h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .page-header .subtitle { color: var(--text-secondary); font-size: 1.1rem; }
+        .key-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; max-width: 1400px; margin: 0 auto 3rem; padding: 0 2rem; }
+        .key-stat { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem; text-align: center; }
+        .key-stat .big-num { font-family: 'JetBrains Mono', monospace; font-size: 2.5rem; font-weight: 600; color: var(--accent-gold); }
+        .key-stat .label { color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.25rem; }
+        .section { max-width: 1400px; margin: 0 auto 3rem; padding: 0 2rem; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-subtle); }
+        .chart-card { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
+        .chart-card h3 { font-size: 1rem; font-weight: 500; margin-bottom: 1rem; color: var(--text-secondary); }
+        .chart-container { position: relative; height: 300px; }
+        .insight-box { background: linear-gradient(135deg, rgba(212, 168, 83, 0.1), rgba(45, 212, 191, 0.05)); border: 1px solid rgba(212, 168, 83, 0.2); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
+        .insight-box h4 { color: var(--accent-gold); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+        .insight-box p { color: var(--text-secondary); font-size: 0.95rem; }
+        .data-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        .data-table th, .data-table td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border-subtle); }
+        .data-table th { color: var(--text-muted); font-weight: 500; font-size: 0.85rem; text-transform: uppercase; }
+        .data-table td { color: var(--text-primary); }
+        .data-table tr:hover { background: var(--bg-hover); }
+        .topic-nav { max-width: 1400px; margin: 3rem auto; padding: 0 2rem; display: flex; justify-content: space-between; }
+        .topic-nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
+        .topic-nav a:hover { color: var(--accent-gold); }
+        .topic-nav .next { margin-left: auto; }
+        footer { max-width: 1400px; margin: 0 auto; padding: 2rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-subtle); flex-wrap: wrap; gap: 1rem; }
+        .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 600; }
+        .footer-logo span { color: var(--accent-gold); }
+        .footer-links { display: flex; gap: 2rem; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; }
+        .source-note { font-size: 0.8rem; color: var(--text-muted); }
+        @media (max-width: 768px) { .nav-links { display: none; } .page-header h1 { font-size: 2rem; } .key-stats { grid-template-columns: 1fr 1fr; } .big-num { font-size: 2rem; } footer { flex-direction: column; text-align: center; } }
+    </style>
+</head>
+<body>
+    <nav><div class="nav-inner"><a href="../index.html" class="logo">Africa<span>Data</span></a><ul class="nav-links"><li><a href="../index.html">All Countries</a></li><li><a href="index.html" class="active">Madagascar</a></li><li><a href="../about.html">About</a></li></ul></div></nav>
+    <div class="breadcrumb"><a href="../index.html">AfricaData</a><span class="sep">→</span><a href="index.html">Madagascar</a><span class="sep">→</span><span class="current">Household Characteristics</span></div>
+    <header class="page-header"><h1>Household Characteristics</h1><p class="subtitle">Housing, population from EDSMD-V 2021</p></header>
+    <section class="key-stats"><div class="key-stat"><div class="big-num">25%</div><div class="label">Female-headed HH</div></div>
+        <div class="key-stat"><div class="big-num">657</div><div class="label">Clusters surveyed</div></div>
+        <div class="key-stat"><div class="big-num">22</div><div class="label">Regions covered</div></div>
+        <div class="key-stat"><div class="big-num">4.5</div><div class="label">Avg HH size</div></div></section>
+    <section class="section">
+        <div class="insight-box"><h4>Key Findings</h4><p>The 2021 EDSMD-V is the 5th DHS conducted in Madagascar since 1992. It surveyed 657 clusters across all 22 regions. 25% of households are headed by women. Average household size is 4.5 members. The survey collected data on housing characteristics, water, sanitation, and household possessions.</p></div>
+        <h2 class="section-title">Survey Details</h2>
+        <div class="chart-card"><table class="data-table">
+            <thead><tr><th>Item</th><th>Value</th></tr></thead>
+            <tbody>
+                <tr><td>Survey year</td><td>2021</td></tr>
+                <tr><td>Survey type</td><td>DHS (EDSMD-V)</td></tr>
+                <tr><td>Implementing agency</td><td>INSTAT</td></tr>
+                <tr><td>Funding</td><td>USAID, PMI, UNFPA, UNICEF, Government</td></tr>
+                <tr><td>Clusters selected</td><td>657</td></tr>
+                <tr><td>Households per cluster</td><td>34</td></tr>
+            </tbody>
+        </table></div>
+    </section>
+    <section class="section">
+        <h2 class="section-title">22 Regions Covered</h2>
+        <div class="chart-card"><table class="data-table">
+            <thead><tr><th>Region</th><th>Region</th></tr></thead>
+            <tbody>
+                <tr><td>Antananarivo</td><td>Analanjirofo</td></tr>
+                <tr><td>Diana</td><td>Atsinanana</td></tr>
+                <tr><td>Sava</td><td>Alaotra Mangoro</td></tr>
+                <tr><td>Sofia</td><td>Amoron'i Mania</td></tr>
+                <tr><td>Boeny</td><td>Vatovavy Fitovinany</td></tr>
+                <tr><td>Melaky</td><td>Haute Matsiatra</td></tr>
+                <tr><td>Menabe</td><td>Ihorombe</td></tr>
+                <tr><td>Atsimo Andrefana</td><td>Atsimo Atsinanana</td></tr>
+                <tr><td>Androy</td><td>Vakinankaratra</td></tr>
+                <tr><td>Anosy</td><td>Itasy</td></tr>
+                <tr><td>Betsiboka</td><td>Bongolava</td></tr>
+            </tbody>
+        </table></div>
+    </section>
+    <div class="topic-nav"><a href="domestic-violence.html">← Domestic Violence</a><a href="ncds.html" class="next">NCDs →</a></div>
+    <footer><div class="footer-logo">Africa<span>Data</span></div><div class="footer-links"><a href="../about.html">About</a><a href="../methodology.html">Methodology</a></div><div class="source-note">Source: <a href="https://dhsprogram.com/" target="_blank" rel="noopener">The DHS Program</a> — 2025</div></footer>
+    <script>
+        Chart.defaults.color = '#a1a1aa';
+        Chart.defaults.borderColor = 'rgba(255,255,255,0.06)';
+        Chart.defaults.font.family = "'Source Sans 3', sans-serif";
+        const colors = { gold: '#d4a853', teal: '#2dd4bf', coral: '#f97316', rose: '#f43f5e', purple: '#a855f7', blue: '#3b82f6' };
+
+    </script>
+</body>
+</html>
