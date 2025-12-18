@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Open, accessible health and demographic statistics for African countries. Data from DHS surveys, presented clearly.">
+    <title>AfricaData — Open Statistics for the Continent</title>
+    <link rel="icon" type="image/svg+xml" href="Nigeria/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/shared-styles.css">
+    <style>
+        :root {
+            --bg-primary: #0d0f12;
+            --bg-secondary: #14171c;
+            --bg-card: #1a1e24;
+            --bg-hover: #22272f;
+            --text-primary: #f4f4f5;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --accent-gold: #d4a853;
+            --accent-teal: #2dd4bf;
+            --border-subtle: rgba(255,255,255,0.06);
+            --border-medium: rgba(255,255,255,0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Source Sans 3', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: transparent;
+            backdrop-filter: blur(20px);
+            border-bottom: none;
+        }
+
+        .nav-inner {
+            width: 100%;
+            padding: 1rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo span { color: var(--accent-gold); }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active { color: var(--accent-gold); }
+
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Background image with gradient blending */
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('img/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .bg-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(to bottom, var(--bg-primary) 0%, transparent 20%),
+                linear-gradient(to top, var(--bg-primary) 0%, transparent 20%),
+                rgba(13, 15, 18, 0.6);
+            pointer-events: none;
+        }
+
+        .hero {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 2rem;
+            max-width: 900px;
+        }
+
+        h1 {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        h1 .highlight {
+            color: var(--accent-gold);
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+        }
+
+        /* Search bar style like reference */
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border-medium);
+            border-radius: 50px;
+            padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+            max-width: 550px;
+            margin: 0 auto 2rem;
+        }
+
+        .search-bar .icon {
+            color: var(--text-muted);
+            margin-right: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .country-select {
+            appearance: none;
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            font-family: inherit;
+            cursor: pointer;
+            padding: 0.75rem 0;
+        }
+
+        .country-select:focus {
+            outline: none;
+        }
+
+        .country-select option {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .go-btn {
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: inherit;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .go-btn:hover {
+            background: #e5b95f;
+        }
+
+        .go-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Trust indicators */
+        .trust-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .trust-row .divider {
+            color: var(--border-medium);
+        }
+
+        .trust-row .highlight-stat {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        @media (max-width: 600px) {
+            .search-bar {
+                flex-direction: column;
+                border-radius: 12px;
+                padding: 1rem;
+                gap: 1rem;
+            }
+            .go-btn {
+                width: 100%;
+            }
+            .trust-row {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .trust-row .divider {
+                display: none;
+            }
+        }
+
+        footer {
+            border-top: none;
+            background: transparent;
+        }
+
+        @media (max-width: 600px) {
+            .nav-links { display: none; }
+            .country-selector { flex-direction: column; width: 100%; max-width: 360px; }
+            .country-select { width: 100%; min-width: unset; }
+            .go-btn { width: 100%; }
+            .stats { gap: 2rem; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="logo">Africa<span>Data</span></a>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Countries</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="methodology.html">Methodology</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="bg-image"></div>
+        <div class="hero">
+            <h1>Explore Health Data Across <span class="highlight">Africa</span></h1>
+            <p class="subtitle">Open health and demographic statistics from DHS surveys — no jargon, no paywalls</p>
+            
+            <div class="search-bar">
+                <span class="icon">🌍</span>
+                <select class="country-select" id="countrySelect">
+                    <option value="" disabled selected>Select a country to explore</option>
+                    <option value="Cameroon/index.html">🇨🇲 Cameroon</option>
+                    <option value="Democratic Republic of the Congo/index.html">🇨🇩 DR Congo</option>
+                    <option value="Nigeria/index.html">🇳🇬 Nigeria</option>
+                </select>
+                <button class="go-btn" id="goBtn" disabled>Explore</button>
+            </div>
+
+            <div class="trust-row">
+                <span><span class="highlight-stat">3</span> Countries Live</span>
+                <span class="divider">|</span>
+                <span><span class="highlight-stat">17</span> Topic Pages</span>
+                <span class="divider">|</span>
+                <span>Data from <span class="highlight-stat">DHS Program</span></span>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-logo">Africa<span>Data</span></div>
+        <div class="footer-links">
+            <a href="about.html">About</a>
+            <a href="methodology.html">Methodology</a>
+        </div>
+        <div class="source-note">Source: <a href="https://dhsprogram.com/" target="_blank" rel="noopener">The DHS Program</a> — 2025</div>
+    </footer>
+
+    <script>
+        const select = document.getElementById('countrySelect');
+        const goBtn = document.getElementById('goBtn');
+
+        select.addEventListener('change', () => {
+            goBtn.disabled = !select.value;
+        });
+
+        goBtn.addEventListener('click', () => {
+            if (select.value) {
+                window.location.href = select.value;
+            }
+        });
+
+        select.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && select.value) {
+                window.location.href = select.value;
+            }
+        });
+    </script>
+</body>
+</html>

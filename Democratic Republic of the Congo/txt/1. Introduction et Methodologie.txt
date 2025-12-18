@@ -1,0 +1,365 @@
+Introduction et Méthodologie
+
+#EDSRDCIII
+
+Enquête Démographique et de
+Santé de la République
+Démocratique du Congo III (EDS-
+
+RÉPUBLIQUE DÉMOCRATIQUE DU CONGO
+
+La troisième Enquête Démographique et de Santé (EDS-RDC III) a été réalisée par
+l’Institut National de la Statistique (INS), avec l’appui de l’École de Santé Publique de
+l’Université de Kinshasa (ESPK). La réalisation technique de l’enquête a été confiée à un
+comité de gestion composée d’un expert de la faculté de démographie de l’université de
+Kinshasa qui a assumé la coordination nationale, des experts de l’INS, l’ESPK, du
+ministère du Plan et du ministère de la Santé. ICF a fourni l’assistance technique à
+l’ensemble du projet par le biais du DHS Program, un projet financé par l’USAID et qui
+fournit un support financier et technique aux pays dans le monde entier pour réaliser
+des enquêtes dans les domaines de la population et de la santé. En outre, la Banque
+mondiale, le Fonds mondial, l’USAID, l’UNICEF, l’UNFPA, et le Gouvernement de la RDC
+ont également contribué, sur le plan financier et technique, à la réalisation de cette
+enquête.
+Le contenu de cette présentation relève de la seule responsabilité de l’INS et de l’ICF et ne reflète pas
+nécessairement les opinions de l’USAID, du gouvernement des États-Unis ou d’autres organismes
+donateurs.
+
+Objectifs de l’enquête
+• L’objectif principal de l’EDS-RDC III est de
+fournir des estimations actualisées des
+indicateurs démographiques et de santé de
+base, en particulier sur la fécondité, la
+contraception, la nutrition, la santé des mères
+et nouveau-nés, la mortalité infantile et
+maternelle, le paludisme, les violences basées
+sur le genre, et les maladies chroniques, entre
+autres.
+• Les informations collectées par l’EDS-RDC III
+sont destinées à éclairer les gestionnaires de
+programmes pour concevoir des stratégies et
+des programmes dont le but est l’amélioration
+
+L’Enquête
+• L’EDS-RDC III est la 3ème Enquête
+Démographique et de Santé à être réalisé
+en RDC depuis 2007 dans le cadre du DHS
+Program.
+• Elle est conçue pour produire des résultats
+représentatifs au niveau de l’ensemble du
+pays, au niveau du milieu de résidence
+(urbain, rural), et au niveau de chacune des
+provinces de la RDC.
+
+Échantillonnage
+Base de sondage : Recensement général en
+1984 avec plusieurs révisions
+1er degré : 780 grappes sélectionnées (224
+urbains et 556 ruraux)
+2ème degré : 34 ménages par grappe
+sélectionnés.
+Les ménages sélectionnés ont été visités et
+interviewés. Toutes les femmes de 15 à 49
+ans dans tous les ménages sélectionnés et
+les hommes de 15 à 59 ans dans la moitié
+des ménages ont été interviewés.
+
+République Démocratique du
+NordCongo
+SudUbangi
+Mongala
+
+Ubangi
+
+Bas-Uele
+
+HautUele
+Ituri
+
+Tshopo
+
+Equateur
+
+NordKivu
+
+Tshuapa
+Kinshasa
+
+MaiNdombe
+Kwilu
+
+KongoCentral
+
+Kwango
+
+SudKivu
+
+Sankuru
+Maniema
+
+Kasaï
+
+Lomami
+
+Tanganyika
+
+HautLomami
+
+KasaïCentral KasaïOriental Lualaba
+
+HautKatanga
+
+Questionnaires
+• Questionnaire Ménage
+• Questionnaire Femme
+• Questionnaire Homme
+• Questionnaire Biomarqueur
+Les questionnaires ont été traduits du
+français en les 4 langues nationales:
+•
+•
+•
+•
+
+Kikongo
+Lingala
+Swahili
+Tshiluba
+
+Questionnaire ménage
+•
+
+Enregistrer tous les membres du ménage et
+identifier les femmes, les hommes et les enfants
+éligibles
+
+•
+
+Caractéristiques des membres du ménage (âge,
+sexe, résidence, état matrimonial, niveau
+d’instruction, enregistrement des naissances,
+vaccination Covid-19, etc.)
+
+•
+
+Caractéristiques du ménage (source
+d’approvisionnement en eau de boisson, type de
+toilettes, possession de biens, utilisation des
+moustiquaires, matériau du logement, etc.)
+
+•
+
+Données sur la consommation du tabac, le travail
+des enfants, l’hospitalisation et les soins
+ambulatoires.
+
+Questionnaire femme
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+•
+
+Les caractéristiques sociodémographiques
+La reproduction
+La contraception
+La grossesse et les soins postnatals
+La vaccination des enfants
+La santé et l’état nutritionnel des enfants
+Le mariage et l’activité sexuelle
+Les préférences en matière de fécondité
+Les caractéristiques du mari et travail de la femme
+Le VIH/Sida
+Les autres problèmes de santé
+Les maladies non transmissibles
+La fistule
+La mortalité adulte et mortalité maternelle
+La violence domestique
+
+Questionnaire homme
+•
+•
+•
+•
+•
+•
+•
+•
+•
+
+Les caractéristiques sociodémographiques
+La reproduction
+La contraception
+Le mariage et activité sexuelle
+Les préférences en matière de fécondité
+L’emploi et le genre
+Le VIH/Sida
+Les autres problèmes de santé
+Les maladies non transmissibles
+
+Questionnaire biomarqueur
+L’anthropométrie (poids et taille)
+La tension artérielle
+Le test de l’hémoglobine (test d’anémie)
+Le test de l’hémoglobine glyquée (test de
+diabète)
+• Le test du paludisme
+• Le test du VIH
+•
+•
+•
+•
+
+Les cibles étaient les enfants de 0 à 4 ans, les
+femmes de 15 à 49 ans et les hommes de 15 à
+59 ans
+Ménages sélectionnés pour l’enquête homme:
+
+Formation des formateurs et
+prétest
+
+Formation du prétest :
+
+• Formation de 56 candidats (42 enquêteurs et
+14 agents biomarqueurs) du 17 novembre au
+7 décembre 2022
+
+Formation du personnel de terrain :
+• Formation en deux étapes.
+•
+•
+
+192 personnes formées dont 42 agents
+biomarqueurs : 6 provinces proches de Kinshasa
+et la ville de Kinshasa du 19 avril au 13 mai 2023.
+536 personnes formées dont 141 agents
+biomarqueurs : 19 provinces groupées en 6 sites
+selon la proximité géographique du 11 octobre
+au 20 novembre 2023.
+
+Collecte et traitement des données
+• Travaux de terrain réalisés dans les 7
+premières provinces du 9 octobre au 7
+décembre 2023 ; et pour les 19 autres
+provinces du 22 novembre 2023 au 31
+janvier 2024.
+•
+
+•
+
+La collecte des données a été réalisée au moyen
+de Tablettes PC en utilisant le logiciel CSPro.
+Après validation des données sur le terrain, les
+fichiers de données ont été transférés au bureau
+central par grappe via IFSS.
+Ces fichiers de données ont été enregistrés,
+compilés, et traités sur un ordinateur central. Les
+données de chaque grappe ont été vérifiées et
+un fichier unique de données apurées a été créé
+après que les fichiers de toutes les grappes aient
+
+Résultats des interviews ménages
+et individuels
+Interviews ménages
+Ménages sélectionnés
+
+26 452
+
+Ménages occupés
+
+26 380
+
+Ménages interviewés
+
+26 347
+
+Taux de réponse
+
+99,9 %
+
+Interviews des femmes de 15-49 ans
+Femmes éligibles
+
+27 846
+
+Femmes interviewées
+
+27 583
+
+Taux de réponse
+
+99,1 %
+
+Interviews des hommes de 15-59 ans
+Hommes éligibles
+
+13 226
+
+Hommes interviewés
+
+12 681
+
+Taux de réponse
+
+98,7 %
+
+Publications, données et ressources
+Rapport finalRapport synthèse
+
+STATcompiler.com
+
+Affiche
+
+Appli mobile du
+DHS Program
+pour Android &
+iOS
+
+Base de données
+disponible à DHS
+program.com
+
+API.DHSprogram.c
+om
+
+Ressources numériques du DHS
+Program
+
+Recevoir des infos et
+des mises à jour sur
+les réseaux sociaux
+
+Regarder des
+vidéos
+tutoriels sur Y
+ouTube
+
+Accéder à la
+Code Share
+Library sur GitH
+ub
+
+Blog.dhsprogram.c
+om
+
+DHS Program User Foru
+m
+spatialdata.dhsprogram.c
+om
+
+Des cours en
+ligne gratuits et
+ouverts sur DHS
+Program Learnin
+g Hub
+
+

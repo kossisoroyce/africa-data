@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nigeria child health statistics from the 2024 DHS. Vaccination coverage, childhood illness treatment, and care-seeking by state.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <title>Child Health — Nigeria — AfricaData</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/shared-styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <style>
+        :root {
+            --bg-primary: #0d0f12;
+            --bg-secondary: #14171c;
+            --bg-card: #1a1e24;
+            --bg-hover: #22272f;
+            --text-primary: #f4f4f5;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --accent-gold: #d4a853;
+            --accent-teal: #2dd4bf;
+            --accent-coral: #f97316;
+            --accent-rose: #f43f5e;
+            --border-subtle: rgba(255,255,255,0.06);
+            --border-medium: rgba(255,255,255,0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Source Sans 3', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(13, 15, 18, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo span { color: var(--accent-gold); }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active { color: var(--accent-gold); }
+
+        .breadcrumb {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5rem 2rem 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a { color: var(--text-muted); text-decoration: none; }
+        .breadcrumb a:hover { color: var(--accent-gold); }
+        .breadcrumb .sep { margin: 0 0.5rem; }
+        .breadcrumb .current { color: var(--accent-gold); }
+
+        .page-header {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem 2rem;
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p,
+        .page-header .lead,
+        .page-header .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 700px;
+        }
+
+        .key-stats {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem 3rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .key-stat {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .key-stat .value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+        }
+
+        .key-stat .value.good { color: var(--accent-teal); }
+        .key-stat .value.danger { color: var(--accent-rose); }
+        .key-stat .value.warning { color: var(--accent-coral); }
+
+        .key-stat .label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        .key-stat .context,
+        .key-stat .change {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        .key-stat .change.positive { color: var(--accent-teal); }
+        .key-stat .change.negative { color: var(--accent-rose); }
+
+        section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem 3rem;
+        }
+
+        .section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .chart-grid { grid-template-columns: 1fr; }
+        }
+
+        .chart-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .chart-card.full-width { grid-column: 1 / -1; }
+
+        .chart-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .chart-card .subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .chart-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-container h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .chart-card .chart-container {
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin-bottom: 0;
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 300px;
+        }
+
+        .editorial { margin: 2rem 0; }
+
+        .editorial-aside {
+            background: var(--bg-card);
+            border-left: 3px solid var(--accent-gold);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .editorial-aside h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .editorial-aside p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .insight-card {
+            background: var(--bg-card);
+            border-left: 3px solid var(--accent-gold);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .insight-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .insight-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .stat-inline {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent-teal);
+            font-weight: 500;
+        }
+
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+        }
+
+        .comparison-col { text-align: center; }
+
+        .comparison-col h4 {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .big-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 600;
+            line-height: 1;
+        }
+
+        .big-num.women { color: var(--accent-rose); }
+        .big-num.men { color: var(--accent-teal); }
+
+        .comparison-col .desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        .data-table, .state-table, table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 1rem 0.75rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        th {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+        }
+
+        tr:hover { background: var(--bg-hover); }
+
+        .bar-cell {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .bar {
+            height: 8px;
+            border-radius: 4px;
+            background: var(--accent-gold);
+        }
+
+        .bar-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        .bar-bg {
+            background: var(--bg-hover);
+            border-radius: 2px;
+            height: 8px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: var(--accent-gold);
+            border-radius: 2px;
+        }
+
+        .bar-fill.high { background: var(--accent-teal); }
+        .bar-fill.mid { background: var(--accent-gold); }
+        .bar-fill.low { background: var(--accent-rose); }
+
+        .topic-nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topic-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .topic-nav a:hover { color: var(--accent-gold); }
+        .topic-nav .next { margin-left: auto; }
+
+        footer {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            border-top: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer a { color: var(--text-secondary); text-decoration: none; }
+        footer a:hover { color: var(--accent-gold); }
+
+        .source-note { font-size: 0.8rem; color: var(--text-muted); }
+
+        @media (max-width: 600px) {
+            .page-header h1 { font-size: 2rem; }
+            .key-stat .value { font-size: 2rem; }
+            .key-stats { grid-template-columns: 1fr 1fr; }
+            .comparison-row { grid-template-columns: 1fr; }
+            .big-num { font-size: 3rem; }
+            footer { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="../index.html" class="logo">Africa<span>Data</span></a>
+            <ul class="nav-links">
+                <li><a href="../index.html">All Countries</a></li>
+                <li><a href="index.html" class="active">Nigeria</a></li>
+                <li><a href="../about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="../index.html">AfricaData</a>
+        <span class="sep">→</span>
+        <a href="index.html">Nigeria</a>
+        <span class="sep">→</span>
+        <span class="current">Child Health</span>
+    </div>
+
+    <header class="page-header">
+        <h1>Child Health</h1>
+        <p class="lead">Only 20% of children are fully vaccinated according to the national schedule. Treatment-seeking for childhood illnesses has improved, but gaps remain — especially for diarrhoea management.</p>
+    </header>
+
+    <section class="key-stats">
+        <div class="key-stat">
+            <div class="value warning">20%</div>
+            <div class="label">Fully vaccinated</div>
+            <div class="context">National schedule (12-23 mo)</div>
+        </div>
+        <div class="key-stat">
+            <div class="value">39%</div>
+            <div class="label">Basic antigens</div>
+            <div class="context">Fully vaccinated (12-23 mo)</div>
+        </div>
+        <div class="key-stat">
+            <div class="value">60%</div>
+            <div class="label">Treatment sought</div>
+            <div class="context">For fever/ARI/diarrhoea</div>
+        </div>
+        <div class="key-stat">
+            <div class="value">39%</div>
+            <div class="label">ORT + continued feeding</div>
+            <div class="context">For diarrhoea treatment</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <h2>Vaccination Coverage</h2>
+            <p>Percent of children age 12-23 months who received each vaccine</p>
+        </div>
+
+        <div class="chart-grid">
+            <div class="chart-card full-width">
+                <h3>Individual Vaccine Coverage</h3>
+                <p class="subtitle">Children age 12-23 months, at any time before the survey</p>
+                <div class="chart-wrapper" style="height: 400px;">
+                    <canvas id="vaccineChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="editorial">
+            <aside class="editorial-aside">
+                <h3>The Dropout Problem</h3>
+                <p>While 65% of children receive their first dose of oral polio vaccine, only 20% complete all vaccinations. High dropout rates between doses signal problems with follow-up care and access.</p>
+            </aside>
+            <div class="editorial-main">
+                <div class="insight-card">
+                    <h4>Zero-dose children persist</h4>
+                    <p><span class="stat-inline">31%</span> of children age 12-23 months have received no vaccinations at all — a critical gap that puts them at severe risk.</p>
+                </div>
+                <div class="insight-card">
+                    <h4>Education drives coverage</h4>
+                    <p>Children of mothers with higher education have <span class="stat-inline">43%</span> full vaccination coverage, compared to just <span class="stat-inline">10%</span> for children of uneducated mothers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <h2>Childhood Illnesses & Care-Seeking</h2>
+            <p>Symptoms and treatment-seeking in the 2 weeks before the survey</p>
+        </div>
+
+        <div class="chart-card">
+            <div class="illness-grid">
+                <div class="illness-item">
+                    <div class="pct">16%</div>
+                    <div class="label">Had fever</div>
+                    <div class="context">Children under 5</div>
+                </div>
+                <div class="illness-item">
+                    <div class="pct">2%</div>
+                    <div class="label">Had ARI symptoms</div>
+                    <div class="context">Children under 5</div>
+                </div>
+                <div class="illness-item">
+                    <div class="pct">15%</div>
+                    <div class="label">Had diarrhoea</div>
+                    <div class="context">Children under 5</div>
+                </div>
+                <div class="illness-item">
+                    <div class="pct">60%</div>
+                    <div class="label">Treatment sought</div>
+                    <div class="context">For each condition</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <h2>Diarrhoea Treatment</h2>
+            <p>Among children under 5 with diarrhoea in the 2 weeks before the survey</p>
+        </div>
+
+        <div class="chart-grid">
+            <div class="chart-card">
+                <h3>Treatment Types</h3>
+                <p class="subtitle">Percent receiving each treatment</p>
+                <div class="chart-wrapper">
+                    <canvas id="diarrhoeaChart"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3>Feeding During Diarrhoea</h3>
+                <p class="subtitle">Amount given compared to usual</p>
+                <div class="chart-wrapper">
+                    <canvas id="feedingChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <h2>Vaccination by Demographics</h2>
+            <p>Full vaccination coverage (national schedule) by wealth and education</p>
+        </div>
+
+        <div class="chart-grid">
+            <div class="chart-card">
+                <h3>By Wealth Quintile</h3>
+                <p class="subtitle">Children age 12-23 months</p>
+                <div class="chart-wrapper">
+                    <canvas id="wealthChart"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3>By Mother's Education</h3>
+                <p class="subtitle">Children age 12-23 months</p>
+                <div class="chart-wrapper">
+                    <canvas id="educationChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <h2>State-Level Data</h2>
+            <p>Full vaccination coverage (national schedule) by state</p>
+        </div>
+
+        <div class="chart-card">
+            <table class="state-table">
+                <thead>
+                    <tr>
+                        <th>State</th>
+                        <th>Zone</th>
+                        <th>Fully Vaccinated</th>
+                        <th class="bar-cell"></th>
+                    </tr>
+                </thead>
+                <tbody id="stateTableBody"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <div class="topic-nav">
+        <a href="maternal-health.html">← Maternal Health</a>
+        <a href="nutrition.html" class="next">Nutrition →</a>
+    </div>
+
+    <footer>
+        <div class="footer-logo">Africa<span>Data</span></div>
+        <div class="footer-links">
+            <a href="../about.html">About</a>
+            <a href="../methodology.html">Methodology</a>
+        </div>
+        <div class="source-note">Source: <a href="https://dhsprogram.com/" target="_blank" rel="noopener">The DHS Program</a> — 2025</div>
+    </footer>
+
+    <script>
+        Chart.defaults.color = '#a1a1aa';
+        Chart.defaults.borderColor = 'rgba(255,255,255,0.06)';
+        Chart.defaults.font.family = "'Source Sans 3', sans-serif";
+
+        const colors = { gold: '#d4a853', teal: '#2dd4bf', coral: '#f97316', rose: '#f43f5e' };
+
+        // Vaccine Chart
+        new Chart(document.getElementById('vaccineChart'), {
+            type: 'bar',
+            data: {
+                labels: ['BCG', 'OPV 0', 'OPV 1', 'OPV 2', 'OPV 3', 'IPV', 'Penta 1', 'Penta 2', 'Penta 3', 'Pneumo 1', 'Pneumo 3', 'Rota 2', 'Measles', 'Fully (basic)', 'Fully (national)', 'None'],
+                datasets: [{
+                    data: [57, 46, 65, 58, 55, 43, 63, 60, 53, 63, 53, 42, 51, 39, 20, 31],
+                    backgroundColor: (ctx) => {
+                        const idx = ctx.dataIndex;
+                        if (idx === 15) return colors.rose;
+                        if (idx >= 13) return colors.gold;
+                        const value = ctx.raw;
+                        if (value >= 55) return colors.teal;
+                        if (value >= 45) return colors.gold;
+                        return colors.coral;
+                    },
+                    borderRadius: 4,
+                    barThickness: 25
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, max: 70, ticks: { callback: v => v + '%' }, grid: { color: 'rgba(255,255,255,0.04)' } },
+                    x: { grid: { display: false }, ticks: { maxRotation: 45, minRotation: 45 } }
+                }
+            }
+        });
+
+        // Diarrhoea Treatment Chart
+        new Chart(document.getElementById('diarrhoeaChart'), {
+            type: 'bar',
+            data: {
+                labels: ['ORS packet', 'ORT (any)', 'ORT + feeding', 'Zinc', 'Zinc + ORS', 'Antibiotics', 'No treatment'],
+                datasets: [{
+                    data: [47, 54, 39, 33, 24, 15, 17],
+                    backgroundColor: [colors.teal, colors.teal, colors.gold, colors.gold, colors.coral, colors.coral, colors.rose],
+                    borderRadius: 4,
+                    barThickness: 35
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { beginAtZero: true, max: 60, ticks: { callback: v => v + '%' }, grid: { color: 'rgba(255,255,255,0.04)' } },
+                    y: { grid: { display: false } }
+                }
+            }
+        });
+
+        // Feeding Chart
+        new Chart(document.getElementById('feedingChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Same amount', 'More', 'Somewhat less', 'Much less', 'None'],
+                datasets: [{
+                    data: [33, 39, 21, 2, 3],
+                    backgroundColor: [colors.teal, colors.gold, colors.coral, colors.rose, '#52525b'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'right', labels: { usePointStyle: true, padding: 15 } }
+                }
+            }
+        });
+
+        // Wealth Chart
+        new Chart(document.getElementById('wealthChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Poorest', 'Second', 'Middle', 'Fourth', 'Wealthiest'],
+                datasets: [{
+                    data: [11, 12, 18, 26, 40],
+                    backgroundColor: (ctx) => {
+                        const value = ctx.raw;
+                        if (value >= 35) return colors.teal;
+                        if (value >= 20) return colors.gold;
+                        return colors.rose;
+                    },
+                    borderRadius: 4,
+                    barThickness: 40
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, max: 50, ticks: { callback: v => v + '%' }, grid: { color: 'rgba(255,255,255,0.04)' } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+        // Education Chart
+        new Chart(document.getElementById('educationChart'), {
+            type: 'bar',
+            data: {
+                labels: ['No education', 'Primary', 'Secondary', 'Higher'],
+                datasets: [{
+                    data: [10, 19, 26, 43],
+                    backgroundColor: (ctx) => {
+                        const value = ctx.raw;
+                        if (value >= 35) return colors.teal;
+                        if (value >= 20) return colors.gold;
+                        return colors.rose;
+                    },
+                    borderRadius: 4,
+                    barThickness: 40
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, max: 50, ticks: { callback: v => v + '%' }, grid: { color: 'rgba(255,255,255,0.04)' } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+        // State Table
+        const stateData = [
+            { state: 'Bayelsa', zone: 'South South', pct: 55 },
+            { state: 'Ondo', zone: 'South West', pct: 47 },
+            { state: 'Delta', zone: 'South South', pct: 45 },
+            { state: 'Lagos', zone: 'South West', pct: 44 },
+            { state: 'Osun', zone: 'South West', pct: 41 },
+            { state: 'Cross River', zone: 'South South', pct: 40 },
+            { state: 'Imo', zone: 'South East', pct: 38 },
+            { state: 'Ebonyi', zone: 'South East', pct: 36 },
+            { state: 'Benue', zone: 'North Central', pct: 34 },
+            { state: 'Ogun', zone: 'South West', pct: 33 },
+            { state: 'Jigawa', zone: 'North West', pct: 33 },
+            { state: 'Nasarawa', zone: 'North Central', pct: 29 },
+            { state: 'Enugu', zone: 'South East', pct: 29 },
+            { state: 'Oyo', zone: 'South West', pct: 28 },
+            { state: 'Anambra', zone: 'South East', pct: 27 },
+            { state: 'FCT', zone: 'North Central', pct: 25 },
+            { state: 'Akwa Ibom', zone: 'South South', pct: 23 },
+            { state: 'Adamawa', zone: 'North East', pct: 23 },
+            { state: 'Bauchi', zone: 'North East', pct: 23 },
+            { state: 'Gombe', zone: 'North East', pct: 21 },
+            { state: 'Abia', zone: 'South East', pct: 21 },
+            { state: 'Rivers', zone: 'South South', pct: 19 },
+            { state: 'Borno', zone: 'North East', pct: 16 },
+            { state: 'Katsina', zone: 'North West', pct: 15 },
+            { state: 'Kano', zone: 'North West', pct: 14 },
+            { state: 'Kwara', zone: 'North Central', pct: 13 },
+            { state: 'Plateau', zone: 'North Central', pct: 13 },
+            { state: 'Yobe', zone: 'North East', pct: 13 },
+            { state: 'Niger', zone: 'North Central', pct: 11 },
+            { state: 'Kaduna', zone: 'North West', pct: 11 },
+            { state: 'Adamawa', zone: 'North East', pct: 10 },
+            { state: 'Taraba', zone: 'North East', pct: 8 },
+            { state: 'Kogi', zone: 'North Central', pct: 8 },
+            { state: 'Zamfara', zone: 'North West', pct: 4 },
+            { state: 'Sokoto', zone: 'North West', pct: 3 },
+            { state: 'Kebbi', zone: 'North West', pct: 3 }
+        ];
+
+        const tbody = document.getElementById('stateTableBody');
+        tbody.innerHTML = stateData.map(row => {
+            let barClass = 'low';
+            if (row.pct >= 35) barClass = 'high';
+            else if (row.pct >= 20) barClass = 'mid';
+            return `
+                <tr>
+                    <td>${row.state}</td>
+                    <td class="zone">${row.zone}</td>
+                    <td class="value">${row.pct}%</td>
+                    <td class="bar-cell">
+                        <div class="bar-bg">
+                            <div class="bar-fill ${barClass}" style="width: ${row.pct * 1.8}%"></div>
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }).join('');
+    </script>
+</body>
+</html>

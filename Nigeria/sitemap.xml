@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    
+    <!-- Nigeria Country Hub -->
+    <url>
+        <loc>https://africadata.org/nigeria/</loc>
+        <lastmod>2024-12-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <!-- Topic Pages -->
+    <url>
+        <loc>https://africadata.org/nigeria/fertility.html</loc>
+        <lastmod>2024-12-18</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://africadata.org/nigeria/family-planning.html</loc>
+        <lastmod>2024-12-18</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://africadata.org/nigeria/maternal-health.html</loc>
+        <lastmod>2024-12-18</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://africadata.org/nigeria/child-health.html</loc>
+        <lastmod>2024-12-18</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://africadata.org/nigeria/mortality.html</loc>
+        <lastmod>2024-12-18</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://africadata.org/nigeria/nutrition.html</loc>
+        <lastmod>2024-12-18</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://africadata.org/nigeria/malaria.html</loc>
+        <lastmod>2024-12-18</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://africadata.org/nigeria/hiv.html</loc>
+        <lastmod>2024-12-18</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://africadata.org/nigeria/women-empowerment.html</loc>
+        <lastmod>2024-12-18</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://africadata.org/nigeria/domestic-violence.html</loc>
+        <lastmod>2024-12-18</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://africadata.org/nigeria/fgm.html</loc>
+        <lastmod>2024-12-18</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://africadata.org/nigeria/household-infrastructure.html</loc>
+        <lastmod>2024-12-18</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://africadata.org/nigeria/health-knowledge.html</loc>
+        <lastmod>2024-12-18</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+</urlset>
