@@ -389,6 +389,36 @@
         .bar-fill.mid { background: var(--accent-gold); }
         .bar-fill.low { background: var(--accent-rose); }
 
+        .prevention-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem 0;
+        }
+
+        .prevention-item {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background: var(--bg-hover);
+            border-radius: 8px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .prevention-item .pct {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .prevention-item .label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
         .topic-nav {
             max-width: 1400px;
             margin: 0 auto;
