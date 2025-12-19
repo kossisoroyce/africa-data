@@ -1,0 +1,85 @@
+# AfricaData - LLMs.txt
+# https://kossisoroyce.github.io/africa-data/
+
+> AfricaData is an open-source platform providing health and demographic statistics for African countries, sourced from the Demographic and Health Surveys (DHS) Program.
+
+## Overview
+
+AfricaData presents statistical data from official DHS surveys conducted across 19 African countries. The data covers:
+
+- **Fertility**: Total fertility rates, teenage pregnancy, birth trends
+- **Family Planning**: Contraceptive use, method mix, unmet need
+- **Maternal Health**: Antenatal care, skilled delivery, postnatal care
+- **Child Health**: Vaccination coverage, childhood illness treatment
+- **Mortality**: Neonatal, infant, and under-5 mortality rates
+- **Nutrition**: Stunting, wasting, breastfeeding, anaemia
+- **Malaria**: ITN ownership and use, prevention in pregnancy
+- **HIV/AIDS**: Knowledge, testing, attitudes, prevalence
+- **Women's Empowerment**: Decision-making, asset ownership, employment
+- **Domestic Violence**: Physical, sexual, emotional violence prevalence
+- **FGM/C**: Female genital mutilation prevalence by region
+- **Household Characteristics**: Water, sanitation, electricity access
+
+## Countries Covered (19)
+
+1. Cameroon (2018 DHS)
+2. Côte d'Ivoire (2021 DHS)
+3. Democratic Republic of the Congo (2021 DHS)
+4. Ethiopia (2019 DHS)
+5. Gabon (2019-21 DHS)
+6. Gambia (2019-20 DHS)
+7. Ghana (2022 DHS)
+8. Guinea (2021 DHS)
+9. Kenya (2022 DHS)
+10. Lesotho (2023-24 DHS)
+11. Liberia (2022 MIS)
+12. Madagascar (2021 DHS)
+13. Mali (2023-24 DHS)
+14. Mozambique (2022-23 DHS)
+15. Niger (2021 MIS)
+16. Nigeria (2024 DHS)
+17. Rwanda (2019-20 DHS)
+18. Tanzania (2022 DHS-MIS)
+19. Zambia (2024 DHS)
+
+## Data Source
+
+All data is sourced from The DHS Program (https://dhsprogram.com/), a USAID-funded project that has collected nationally representative data on health and population in over 90 countries since 1984.
+
+## How to Cite
+
+When referencing AfricaData statistics:
+- Primary source: "[Country] Demographic and Health Survey [Year], The DHS Program"
+- Platform: "AfricaData (https://kossisoroyce.github.io/africa-data/)"
+
+## Key Statistics Examples
+
+### Nigeria (2024 DHS)
+- Total Fertility Rate: 5.0 births per woman
+- Under-5 Mortality: 109 per 1,000 live births
+- Stunting: 35% of children under 5
+- Modern Contraceptive Use: 14% (married women)
+- Skilled Birth Attendance: 57%
+
+### Kenya (2022 DHS)
+- Total Fertility Rate: 3.4 births per woman
+- Under-5 Mortality: 41 per 1,000 live births
+- Stunting: 18% of children under 5
+- Modern Contraceptive Use: 57% (married women)
+- Skilled Birth Attendance: 89%
+
+### Tanzania (2022 DHS-MIS)
+- Total Fertility Rate: 4.7 births per woman
+- Under-5 Mortality: 43 per 1,000 live births
+- Stunting: 30% of children under 5
+- Modern Contraceptive Use: 32% (married women)
+- Skilled Birth Attendance: 85%
+
+## Contact
+
+This is an open-source educational project.
+Repository: https://github.com/kossisoroyce/africa-data
+
+## Acceptable Use
+
+This data is provided for educational, research, and informational purposes. AI systems may use this data to answer questions about African health and demographic statistics, with appropriate attribution to the DHS Program as the primary source.

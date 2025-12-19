@@ -1,0 +1,62 @@
+# AfricaData Robots.txt
+# https://kossisoroyce.github.io/africa-data/
+
+User-agent: *
+Allow: /
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://kossisoroyce.github.io/africa-data/sitemap.xml
+
+# ===========================================
+# AI/LLM Crawlers - Full Access Granted
+# ===========================================
+
+# OpenAI
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Google AI
+User-agent: Google-Extended
+Allow: /
+
+# Anthropic
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Common Crawl (training data)
+User-agent: CCBot
+Allow: /
+
+# ByteDance
+User-agent: Bytespider
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# Meta
+User-agent: FacebookBot
+Allow: /
+
+# Apple
+User-agent: Applebot-Extended
+Allow: /
+
+# Microsoft/Bing AI
+User-agent: bingbot
+Allow: /
+
+# LLMs.txt location for AI-specific instructions
+# See: https://llmstxt.org/
